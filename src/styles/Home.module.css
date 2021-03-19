@@ -1,0 +1,103 @@
+.container {
+  min-height: 100vh;
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  padding: 5rem 0 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  margin: 64px 32px 20px !important;
+  color: #000 !important;
+  font-size: 32px !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  text-align: center !important;
+}
+
+.title em {
+  color: #ff1800;
+  font-style: normal;
+}
+
+.cad_title {
+  margin: 64px 32px 20px !important;
+  color: #FFF !important;
+  font-size: 32px !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  text-align: center !important;
+}
+
+.cad_subtitle {
+  color: #FFF !important;
+  font-size: 24px !important;
+  margin: 10px 32px !important;
+  text-align: center !important;
+}
+
+.image {
+  max-height: 100vh;
+  max-width: 100%;
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #ff1800 !important;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border-color: black !important;
+  border-width: 5px;
+}
+
+.MuiFormLabel-root {
+  color: black !important;
+}
+
+.footer {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer img {
+  margin-left: 0.5rem;
+}
+
+.footer a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  max-width: 800px;
+  margin-top: 3rem;
+}
+.logo {
+  height: 5em;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    width: 100%;
+    flex-direction: column;
+  }
+}
