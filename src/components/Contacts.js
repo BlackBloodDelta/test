@@ -1,13 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import emailjs from 'emailjs-com';
-import {withStyles} from "@material-ui/core";
+import {Paper, withStyles} from "@material-ui/core";
+import styles from '../styles/Contacts.module.css';
 
 export default function ContactUs() {
+	const [ready, setReady] = useState(false);
+
 	const useStyles = makeStyles((theme) => ({
 		paper: {
 			marginTop: theme.spacing(8),
@@ -58,6 +61,9 @@ export default function ContactUs() {
 		emailjs.sendForm('service_6fwcbpk', 'test', e.target, 'user_NpXuJHb2iHHl0d8uR2t5L')
 			.then((result) => {
 				console.log(result.text);
+				if (result.text === 'OK') {
+					setReady(true);
+				}
 			}, (error) => {
 				console.log(error.text);
 			});
@@ -68,54 +74,66 @@ export default function ContactUs() {
 	return (
 		<Container component="main" maxWidth="xs">
 			<div className={classes.paper}>
-				<form className={classes.form} noValidate onSubmit={sendEmail}>
-					<input type="hidden" name="contact_number" />
-					<Grid container spacing={2}>
-						<Grid item xs={12}>
-							<CssTextField
-								autoComplete="fname"
-								name="name"
-								variant="outlined"
-								required
-								fullWidth
-								id="name"
-								label="Nome"
-								autoFocus
-							/>
+				{ready ? (
+					<Paper elevation={3} className={styles.container}>
+						<div>
+							<span className="styles.title">Recebemos o seu email, logo logo vamos encaminhar <br/>o seu E-book!</span>
+							<img src="check.svg" alt="success"/>
+						</div>
+						
+					</Paper>
+
+				): (
+					<form className={classes.form} noValidate onSubmit={sendEmail}>
+						<input type="hidden" name="contact_number" />
+						<Grid container spacing={2}>
+							<Grid item xs={12}>
+								<CssTextField
+									autoComplete="fname"
+									name="name"
+									variant="outlined"
+									required
+									fullWidth
+									id="name"
+									label="Nome"
+									autoFocus
+								/>
+							</Grid>
+							<Grid item xs={12}>
+								<CssTextField
+									variant="outlined"
+									required
+									fullWidth
+									id="email"
+									label="Email"
+									name="email"
+									autoComplete="email"
+								/>
+							</Grid>
+							<Grid item xs={12}>
+								<CssTextField
+									variant="outlined"
+									required
+									fullWidth
+									name="phone"
+									label="Telefone"
+									type="tel"
+									id="phone"
+								/>
+							</Grid>
 						</Grid>
-						<Grid item xs={12}>
-							<CssTextField
-								variant="outlined"
-								required
-								fullWidth
-								id="email"
-								label="Email"
-								name="email"
-								autoComplete="email"
-							/>
-						</Grid>
-						<Grid item xs={12}>
-							<CssTextField
-								variant="outlined"
-								required
-								fullWidth
-								name="phone"
-								label="Telefone"
-								type="tel"
-								id="phone"
-							/>
-						</Grid>
-					</Grid>
-					<ColorButton
-						type="submit"
-						fullWidth
-						variant="contained"
-						color="primary"
-						className={classes.submit}
-					>
-						Quero meu E-book
-					</ColorButton>
-				</form>
+						<ColorButton
+							type="submit"
+							fullWidth
+							variant="contained"
+							color="primary"
+							className={classes.submit}
+						>
+							Quero meu E-book
+						</ColorButton>
+					</form>
+				)}
+
 			</div>
 		</Container>
 	);
